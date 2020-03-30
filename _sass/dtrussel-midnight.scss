@@ -195,6 +195,11 @@ dt {
   display: block;
 }
 
+.center-image {
+    margin: 0 auto;
+    display: block;
+}
+
 
 #header {
   z-index: 100;
@@ -208,41 +213,36 @@ dt {
   box-shadow: 0px 1px 3px rgba(0,0,0,.25);
 
   nav {
-    max-width: 650px;
     margin: 0 auto;
     padding: 0 10px;
     background: blue;
     margin: 6px auto;
 
     li {
-      font-family: $fonts-text;
       font-weight: normal;
       list-style: none;
       display: inline;
       color: white;
       line-height: 50px;
       text-shadow: 0px 1px 0px rgba(0,0,0,.2);
-      font-size: 14px;
+      font-size: 16px;
 
       a {
-        color: white;
-        border: 1px solid #5d910b;
-        background: linear-gradient(#93bd20, #659e10);
+        color: $primary-color;
         border-radius: 2px;
-        box-shadow: inset 0px 1px 0px rgba(255,255,255,.3), 0px 3px 7px rgba(0,0,0,.7);
+        box-shadow: inset 0px 1px 0px rgba(255,255,255,.3), 0px 3px 7px rgba(0,0,0,.4);
 
-        background-color: #93bd20;
+        background-color: $background-color-light;
         padding: 10px 12px;
         margin-top: 6px;
         line-height:14px;
-        font-size:14px;
+        font-size:18px;
         display:inline-block;
         text-align:center;
 
         &:hover {
-          background: linear-gradient(#749619, #527f0e);
-          background-color: #659e10;
-          border: 1px solid #527f0e;
+          background: linear-gradient($background-color-light, $background-color-extra-light);
+          background-color: $background-color-light;
           box-shadow: inset 0px 1px 1px rgba(0,0,0,.2), 0px 1px 0px rgba(0,0,0,.0);
         }
       }
@@ -338,15 +338,8 @@ section {
 
 @media print, screen and (max-width: 480px) {
 
-  #header {
-    margin-top: -20px;
-  }
-
   section {
-    margin-top: 40px;
-  }
-  nav {
-    display: none;
+    margin-top: 55px;
   }
 
   .post-thumbnail {

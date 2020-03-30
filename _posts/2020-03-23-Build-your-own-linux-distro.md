@@ -11,7 +11,7 @@ The recipes conist themselves of tasks (do_compile, do_install...) You
 can then *bake* these recipes into an image with yocto's build system called `bitbake`.
 The generated outputs of a recipe are called packages (one recipe can provide several packages).
 
-![Yocto](/assets/images/yocto-logo.png)
+![Yocto](/assets/images/yocto-logo-bg-dark.svg){: .center-image }
 
 While the projects documentation is excellent, the learning curve is quite steep
 and in the begining it can be quite hard to find a starting point. So let us not

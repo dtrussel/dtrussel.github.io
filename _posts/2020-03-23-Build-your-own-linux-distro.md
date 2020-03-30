@@ -1,29 +1,41 @@
 ---
 layout: post
-title: Build your own linux distro (Yocto Quickstart Guide)
+title: Build your own linux distribution
 thumbnail: assets/images/yocto-logo-bg-dark.svg
+categories: [embedded, linux, yocto, quickstart]
 ---
 
-[Yocto](https://www.yoctoproject.org/) is an open source project that lets you 
-create your own embedded linux distribuition. The main idea is having
-many recipes, that are bundled into layers (usually called `meta-something`).
-The recipes conist themselves of tasks (do_compile, do_install...) You
-can then *bake* these recipes into an image with yocto's build system called `bitbake`.
-The generated outputs of a recipe are called packages (one recipe can provide several packages).
+In this post we are going to create our own yocto layer.
+The [Yocto Project](https://www.yoctoproject.org/) is an open source project that lets you 
+create your own embedded linux distribuition. You create *recipes* that are bundled
+into *layers* (which are usually called `meta-something`).
+The recipes conist themselves of tasks (`do_compile`, `do_install`...) and let you
+specify dependencies between tasks. These recipes are then *baked* into an image
+with yocto's build system called `bitbake`.
+The generated outputs of a recipe are called *packages* (one recipe can provide several packages).
 
 ![Yocto](/assets/images/yocto-logo-bg-dark.svg){: .center-image }
 
+Now you are probably thinking: Why would I want to build yet another linux distro?
+I can just say that in my case, we did not want to rely on an external distribution
+provider for the embedded device we were developing. We wanted to have full control
+over what software will run on the device and we did not want to deal with external
+distribution support or updates.
+
 While the projects documentation is excellent, the learning curve is quite steep
-and in the begining it can be quite hard to find a starting point. So let us not
-waste any time and jump just into it and create an own distribution on a Ubuntu/Debian
-host):
+and in the begining it can be hard to find a good starting point. So instead of
+wasting any time, let us just jump into creating an own distribution. All you need
+is a Debian/Ubuntu host with at least 50 GBytes free disk space.
 
-But be warned. Yocto builds can take a long time and require also some use quite
-some disk space. make sure you have at least 50GB free.
+But be warned. Yocto builds can take a long time when run for the first time.
 
+# Let's start!
 
+Open a terminal and switch to the directory where you would like to start the
+project:
 ```
-sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat
+sudo apt-get install gawk wget git-core diffstat \
+  unzip texinfo gcc-multilib build-essential chrpath socat
 mkdir yocto && cd yocto
 git clone git://git.yoctoproject.org/poky -b zeus
 source poky/oe-init-build-env build
@@ -35,6 +47,7 @@ As first step we installed the dependencies, created a project directory and clo
 the poky (Yocto's example linux distribution) into it. We then sourced the yocto
 build environment (which also creates also a build directory with the provided name if it does not exist yet) and created our own layer with the `bitbake-layers` command. 
 
+# The project's structure
 
 So let us have a look at the whole project and how it is organized:
 ```
@@ -122,8 +135,10 @@ something more meaningful. Often you want to include some library / application
 to your OS. Since `CMake` is quite popular and I often use it for my projects, we
 will add a recipe that builds a cmake project. 
 
+# Add an own recipe
 
-Rename our recipe to the name of the library which we want to add to our layer:
+Now we will rename our recipe to the name of the library which we want to add
+to our layer:
 ```
 cd meta-foundation
 mv recipes-example recipes-support
@@ -136,7 +151,8 @@ Overwrite our example recipe with one that builds a Cmake based library:
 cat > recipes-support/dtr/dtr_git.bb <<'__EOF__'
 SUMMARY = "dtr - C++ utility library"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LIC_FILES_CHKSUM = "\
+  file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 SRC_URI = "git://github.com/dtrussel/dtr.git"
 SRCREV = "866c777907e096f9d88d01cf104984906afc6425"
@@ -156,6 +172,8 @@ included the default cmake recipe tasks. In `DEPENDS` we can set the dependency 
 this recipe on other recipes (here on the boost library which is provided by one of
 the layers in the poky repo).
 
+# The Distro
+
 Since we want our own distribution we add a config file for our distro:
 ```
 mkdir conf/distro
@@ -168,7 +186,7 @@ DISTRO_VERSION = "2020.1"
 DISTRO_CODENAME = "asimov"
 SDK_VENDOR = "-foundation"
 SDK_VERSION = "${DISTRO_VERSION}"
-SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-${MACHINE}"
+SDK_NAME = "${DISTRO}-${DISTRO_VERSION}-${TUNE_PKGARCH}-${MACHINE}"
 SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
 
 DISTRO_VERSION[vardepsexclude] = "DATE"
@@ -176,6 +194,8 @@ SDK_VERSION[vardepsexclude] = "DATE"
 SDK_NAME[vardepsexclude] = "DATE"
 __EOF__
 ```
+
+# The Image
 
 Now a distro can have several images (e.g. base, server, development, production),
 which contain more or less packages in it.
@@ -202,20 +222,14 @@ Great we are building our own linux distribution! Go grab a coffee while the ini
 build will take a long time to build everything from source. But don't worry subsequent
 builds will be incremental.
 
-Some tips:
+## Some tips:
 - Only put your build configuration into `build/conf/local.conf` (and NOT your distro/image/machine configuration).
 - Never modify another layer (if you want to modify an existing recipe, use a `recipes-something/somelibrary_<VERSION>.bbappend` file in your layer instead)
 
-References:
-Yocto Manual
-Bitbacke manual
-
-(Next posts):
-- A look at the yocto build output
-- Group recipes into packagegroups
-- Customizing your yocto distro
-- Build and install a cross compiling toolchain with yocto
-- Add packages to native sdk part
+## References:
+* [Yocto Project Overview](https://www.yoctoproject.org/docs/latest/overview-manual/overview-manual.html)
+* [Yocto Reference Manual](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html)
+* [Bitbacke User Manual](https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html)
 
 
 

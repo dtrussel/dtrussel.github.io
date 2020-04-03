@@ -4,15 +4,13 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+![Myself](/assets/images/about.jpg){: .center-image }
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+This is my personal blog, where I try to share some practical knowledge about
+software engineering.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+I am an software engineer with experiece in robotics and medical devices. My 
+work has been mostly about C++, Python and Linux. I am highly interessted in
+Machine Learning, Optimization and Computer Vision.
 
 
-[jekyll-organization]: https://github.com/jekyll

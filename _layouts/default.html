@@ -21,11 +21,9 @@
   <body>
       <div id="header">
         <nav>
-          {% if site.show_downloads %}
-            <li class="downloads"><a href="{{ site.github.zip_url }}">ZIP</a></li>
-            <li class="downloads"><a href="{{ site.github.tar_url }}">TAR</a></li>
-            <li class="title">DOWNLOADS</li>
-          {% endif %}
+          <a href="/">
+            <img class="logo" src="{{ site.baseurl }}/assets/images/logo.svg" alt="Logo"/>
+          </a>
           <li class="title"><a href="/about/">About</a></li>
           <li class="title"><a href="/">Home</a></li>
         </nav>

@@ -66,7 +66,7 @@ struct MyObject {
 A corresponding `CMakeLists.txt` file for a library that used links to *Boost*
 internally and *Threads* externally, and uses [googletest](https://github.com/google/googletest)
  for unit tests looks like this:
-```
+```cmake
 cmake_minimum_required(VERSION 3.11)
 
 project(mylib VERSION 2020.1

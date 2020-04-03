@@ -2,7 +2,7 @@
 layout: post
 title:  "How to organize a C/C++ project"
 thumbnail: assets/images/cpp-logo.svg
-date:   2020-03-30 11:40:06 +0100
+date: 2020-03-30
 categories: cpp
 ---
 Back to basics. I remember when starting C++ programming that I had a hard time

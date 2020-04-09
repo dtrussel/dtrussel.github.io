@@ -31,6 +31,10 @@ p, ul, ol, table, pre, dl {
   margin:0 0 20px;
 }
 
+p {
+  text-align: justify;
+}
+
 h1, h2, h3 {
   line-height:1.1;
 
@@ -103,10 +107,12 @@ blockquote {
 code {
   font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
   color:#efefef;
+  background: #191919;
   font-size:13px;
-  margin: 0 4px;
-  padding: 4px 6px;
+  padding: 3px 4px;
   border-radius: 2px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.4);
+  border:1px solid #121212;
 }
 
 pre {
@@ -114,7 +120,7 @@ pre {
   background: #191919;
   border-radius: 2px;
   border:1px solid #121212;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,.3);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.4);
   overflow: auto;
   overflow-y: hidden;
 
@@ -123,6 +129,8 @@ pre {
     text-shadow: 0px 1px 0px #000;
     margin: 0;
     padding: 0;
+    box-shadow: unset;
+    border: unset;
   }
 }
 

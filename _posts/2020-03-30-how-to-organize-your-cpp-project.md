@@ -5,20 +5,20 @@ thumbnail: assets/images/cpp-logo.svg
 date: 2020-03-30
 categories: cpp
 ---
-Back to basics. I remember when starting C++ programming that I had a hard time
-figuring out what is the correct way how to organize my projects. Most text books
-I read or lectures I attended were more focused on teaching you either programming
-principles or language features. So in this post I would like to share what is
-in my opinion the best project structure. 
+Back to basics. When I started C++ programming I had a hard time figuring out how
+to organize my projects. Most text books or lectures were more focused on teaching
+ either programming principles or language features. So in this post I would like
+to share what is in my opinion the best project structure. 
 
 ![Yocto](/assets/images/cpp-logo.svg){: .center-image }
 
 The answer you usually get when asking how to structure your project is that you
 should look at a well established project / library and stick to something 
 similar. However when looking at projects like [Boost](https://github.com/boostorg/),
-[Abseil](https://github.com/abseil/abseil-cpp), [JSON for Modern C++](https://github.com/nlohmann/json) I always first had bit a problem to get the essentials because there was
-so much going on or because the library was header-only, but I wanted build
-shared library, and I had to work on a couple of projects till I got the hang of
+[Abseil](https://github.com/abseil/abseil-cpp), [JSON for Modern C++](https://github.com/nlohmann/json)
+But what are the essentials? Some of these projects are huge and need some time to
+get into as a beginner. Or some libraries were header-only, but I wanted to build
+a shared library. I had to work on a couple of projects till I got the hang of
 it.
 
 So let's save you this time and look at a simple example that still should cover
@@ -46,26 +46,26 @@ Already when starting with a project it is important to define which parts of
 code will be part of the public interface of the library and only place those
 parts in the `include` directory (when you are building only an application you
 basically do not need this directory). Then in the `src` folder you place your
-private headers and the compilation units for your project.
+private headers and the compilation units (aka. `.cpp` files) for your project.
 
 I also usually keep the unit and integration tests of the libray in a separate
 `test` folder.
 
-I found it good practice to mirror the namespaces of my libraries as subdirectories
-in the `src` and `include` folder.
-The includes in your files look then like this:
+I consider it a good practice to mirror the namespaces of my libraries as
+ subdirectories in the `src` and `include` folder.
+The includes in your files then look like this:
 ```cpp
-#include "mylib/mysubname/myheader.hpp"
+#include "mylib/mysubnamespace/myheader.hpp"
 
-namespace mylib::mysubname {
+namespace mylib::mysubnamespace {
 
 struct MyObject {
 ...
 ```
 
-A corresponding `CMakeLists.txt` file for a library that used links to *Boost*
-internally and *Threads* externally, and uses [googletest](https://github.com/google/googletest)
- for unit tests looks like this:
+A corresponding `CMakeLists.txt` file for a library that links to *Boost*
+internally and to *Threads* externally, and uses [googletest](https://github.com/google/googletest)
+ for unit testing looks like this:
 ```cmake
 cmake_minimum_required(VERSION 3.11)
 
@@ -88,7 +88,7 @@ FetchContent_Declare(
   GIT_TAG        release-1.10.0)
 
 FetchContent_GetProperties(googletest)
-if(NOT catch_POPULATED)
+if(NOT googletest_POPULATED)
   FetchContent_Populate(googletest)
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR}
     EXCLUDE_FROM_ALL)

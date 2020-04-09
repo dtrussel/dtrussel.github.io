@@ -2,17 +2,17 @@
 layout: post
 title: Build your own linux distribution
 thumbnail: assets/images/yocto-logo-bg-dark.svg
-categories: [embedded, linux, yocto, quickstart]
+categories: [embedded, linux, yocto]
 ---
 
 In this post we are going to create our own yocto layer.
 The [Yocto Project](https://www.yoctoproject.org/) is an open source project that lets you 
-create your own embedded linux distribuition. You create *recipes* that are bundled
+create your own embedded linux distribution. You create **recipes** that are bundled
 into *layers* (which are usually called `meta-something`).
-The recipes conist themselves of tasks (`do_compile`, `do_install`...) and let you
-specify dependencies between tasks. These recipes are then *baked* into an image
+The recipes consist themselves of tasks (`do_compile`, `do_install`...) and let you
+specify dependencies between tasks. These recipes are then **baked** into an image
 with yocto's build system called `bitbake`.
-The generated outputs of a recipe are called *packages* (one recipe can provide several packages).
+The generated outputs of a recipe are called **packages** (one recipe can provide several packages).
 
 ![Yocto](/assets/images/yocto-logo-bg-dark.svg){: .center-image }
 
@@ -22,8 +22,8 @@ provider for the embedded device we were developing. We wanted to have full cont
 over what software will run on the device and we did not want to deal with external
 distribution support or updates.
 
-While the projects documentation is excellent, the learning curve is quite steep
-and in the begining it can be hard to find a good starting point. So instead of
+While the projects documentation is excellent, the learning curve is quite steep.
+In the begining it can be hard to find a good starting point. So instead of
 wasting any time, let us just jump into creating an own distribution. All you need
 is a Debian/Ubuntu host with at least 50 GBytes free disk space.
 
@@ -130,7 +130,7 @@ python do_build() {
 }
 
 ```
-This only prints something during building. Let us change this change this to do
+This only prints something during building. Let us changes this to do
 something more meaningful. Often you want to include some library / application
 to your OS. Since `CMake` is quite popular and I often use it for my projects, we
 will add a recipe that builds a cmake project. 
@@ -197,8 +197,8 @@ __EOF__
 
 # The Image
 
-Now a distro can have several images (e.g. base, server, development, production),
-which contain more or less packages in it.
+A distro can have several images (e.g. base, server, development, production),
+which contain more or less packages.
 So let's add a image that is based on the `core-image-base` and add our recipe
 to it.
 ```
@@ -219,11 +219,11 @@ DISTRO=foundation bitbake foundation-image-base
 ```
 
 Great we are building our own linux distribution! Go grab a coffee while the initial
-build will take a long time to build everything from source. But don't worry subsequent
+build will take a long time, since it builds everything from source. But don't worry, subsequent
 builds will be incremental.
 
 ## Some tips:
-- Only put your build configuration into `build/conf/local.conf` (and NOT your distro/image/machine configuration).
+- Only put your **build configuration** into `build/conf/local.conf` (and NOT your distro, image or machine configuration).
 - Never modify another layer (if you want to modify an existing recipe, use a `recipes-something/somelibrary_<VERSION>.bbappend` file in your layer instead)
 
 ## References:

@@ -4,7 +4,7 @@ title:  "Yocto: Switch to systemd"
 thumbnail: assets/images/systemd-dark.svg
 categories: [embedded, linux, yocto, systemd]
 ---
-Yocto's reference distribution [poky](VIRTUAL-RUNTIME_initscripts = "") comes
+Yocto's reference distribution [poky](https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-poky/README.poky) comes
 with [SysVinit](https://en.wikipedia.org/wiki/Init#SysV-style) as an initalization manager.
 However many major linux distributions use [systemd](https://systemd.io/)
 as a system and service manager. In this post we will look how to easily switch

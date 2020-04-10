@@ -39,5 +39,5 @@ we completly removed all SysVinit dependencies in our image. If you do not speci
 these you can still can use SysVinit for your rescue/minimal image.
 
 `DISTRO_FEATURES_BACKFILL_CONSIDERED` lists features which should not be used for
-(feature backfilling)[https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#ref-features-backfill].
+[feature backfilling](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#ref-features-backfill).
 

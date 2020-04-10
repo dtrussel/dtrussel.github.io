@@ -194,7 +194,7 @@ dt {
   background-color: $background-color-light;
   margin-right: 10px;
   padding: 8px;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
 }
 
@@ -223,11 +223,11 @@ dt {
   .logo {
     display: inline-block;
     background-color: $background-color-light;
-    max-height: 40px;
+    max-height: 34px;
     object-fit: contain;
-    border-radius: 5px;
+    border-radius: 2px;
     box-shadow: inset 0px 1px 0px rgba(255,255,255,.3), 0px 3px 7px rgba(0,0,0,.4);
-    margin-top: 4px;
+    margin-top: 6px;
 
     &:hover {
       background: linear-gradient($background-color-light, $background-color-extra-light);

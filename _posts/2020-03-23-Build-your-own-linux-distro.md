@@ -29,6 +29,8 @@ is a Debian/Ubuntu host with at least 50 GBytes free disk space.
 
 But be warned. Yocto builds can take a long time when run for the first time.
 
+![xkcd advanced technology](https://imgs.xkcd.com/comics/advanced_technology.png){: .center-image }
+
 # Let's start!
 
 Open a terminal and switch to the directory where you would like to start the

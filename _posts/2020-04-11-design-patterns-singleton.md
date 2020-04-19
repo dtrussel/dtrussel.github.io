@@ -117,8 +117,8 @@ in the static part of our code?
 ## The Meyers` Singleton
 Named after [Scott Meyers](https://en.wikipedia.org/wiki/Scott_Meyers), this 
 implementation of a singleton defers its initialization to its first use. Thus
-solving the above mentioned problem of undefined static object initialization.
-
+solving the above mentioned problem of undefined static object initialization
+order.
 
 ```cpp
 struct Singleton {
@@ -151,7 +151,7 @@ Looking at the `instance()` function you might have realized that we return a
 reference of a local variable (which is usually a really bad idea). However it
 is a reference to a [static local variable](https://en.cppreference.com/w/cpp/language/storage_duration#Static_local_variables), hence only one instance of this local
 variable exists in the entire program and therefore returning its reference is
-perfectly fine. And unlike a file static object, the static local variable
+perfectly fine. And unlike a file static object, static local variables
 are initialized the first time they are used.
 
 However there is one downside. There is a performance overhead. Every time the
@@ -203,12 +203,12 @@ SingletonImpl& Singleton::impl(){
 }
 ```
 Each singleton instance also saves a reference to the implementation instance to
-avoid the performance the overhead mentioned in the previous section.
-(There is also the small overhead of an indirection).
+avoid the performance overhead mentioned in the previous section.
+(There is also a small overhead of an indirection).
 
 ## How about thread safety?
 Until now we ignored the thread safety of the singletons. But while the here presented
-singleton instances are thread safe because they are static, the associated data
+singleton instances are thread safe, because they are static, the associated data
 members are no different than any other shared variable. When used in a multi-threaded
 context the programmer is responsible to use it in a thread safe manner, e.g.
 protecting them by a mutex.

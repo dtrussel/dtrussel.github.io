@@ -54,7 +54,7 @@ struct AccelerationSensor : Sensor {
   double measure_value() override { ... }
 };
 
-struct PositionSensor {
+struct PositionSensor : Sensor {
   double measure_value() override { ... }
 };
 

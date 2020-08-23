@@ -37,7 +37,7 @@ Following the [don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repe
 we want to write code that does the same thing for similar objects, but we do not want
 to write the same code for every single class again.
 
-#Runtime Polymorphism
+## Runtime Polymorphism
 So let's assume we have a `PositionSensor` and a `AccelerationSensor` class. However
 our program should detect during runtime how many of each are present and should
 store them in a container. So a possible solution is to introduce a `Sensor` base

@@ -44,7 +44,7 @@ store them in a container. So a possible solution is to introduce a `Sensor` bas
 class and use this base class interface in the part of the code that deals with sensors
 in a generic way.
 
-```
+```cpp
 struct Sensor {
   virtual double measure_value() = 0;
   virtual ~Sensor() = default;

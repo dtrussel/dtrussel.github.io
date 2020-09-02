@@ -10,7 +10,7 @@ on the use case. The idea of the Template Method pattern is to define the overal
 structure in a base class and let the derived classes override the specific behavior.
 
 Going back to the sensor example from my last post:
-```
+```cpp
 struct Sensor {
   double measure(){ return do_measure(); }
   virtual ~Sensor() = default;
@@ -36,7 +36,7 @@ implementation and interface would be coupled and it would make it harder to mai
 If we want later to add some functionality it will be much easier with the template method / a non-virtual
 interface. E.g. we want to filter each sensor value.
 Then we can just modify the base class like this:
-```
+```cpp
 struct Sensor {
   double measure(){
     const auto val = do_measure();

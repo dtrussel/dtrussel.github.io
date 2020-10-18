@@ -10,6 +10,7 @@ Instead we look at how we can use modern C++ features to solve
 the same problem in a different way. Namely we want to send commands to a (possibly)
 remote application. Whilst choosing a testable and maintainable design.
 
+
 Let's best have a look at an example to illustrate the task at hand.
 We will control a remote light bulb.
 

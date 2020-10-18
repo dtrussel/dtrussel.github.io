@@ -108,6 +108,7 @@ good starting point for machine to machine communication, because it is human re
 
 I decided to use [nlohmann/json](https://github.com/nlohmann/json) for this example:
 
+{% raw %}
 ```cpp
 #include <nlohmann/json.hpp>
 
@@ -125,7 +126,7 @@ void from_json(const json& j, SetBrightness& cmd) {
 
 inline
 void to_json(json& j, const SetColor& cmd) {
-  j = json{{"red", cmd.r},{"green", cmd.g},{"red", cmd.b}};
+  j = json{{"red", cmd.r},{"green", cmd.g},{"blue", cmd.b}};
 }
 
 inline
@@ -152,6 +153,7 @@ Command deserialize(const json& j) {
 } // namespace cmd
 
 ```
+{% endraw %}
  
 # Communication
 

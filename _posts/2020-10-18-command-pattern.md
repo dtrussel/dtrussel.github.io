@@ -204,7 +204,9 @@ class Listener : public std::enable_shared_from_this<Listener> {
   cmd::CommandQueue& cmd_queue_;
 
 public:
-  Listener(net::io_context &ioc, tcp::endpoint endpoint, cmd::CommandQueue& cmd_queue)
+  Listener(net::io_context &ioc,
+           tcp::endpoint endpoint,
+           cmd::CommandQueue& cmd_queue)
       : ioc_(ioc), acceptor_(ioc), cmd_queue_(cmd_queue) {
     beast::error_code ec;
 
@@ -272,7 +274,8 @@ class Session : public std::enable_shared_from_this<Session> {
 
 public:
   // Take ownership of the socket
-  explicit Session(tcp::socket &&socket, cmd::CommandQueue& cmd_queue) : ws_(std::move(socket)), cmd_queue_(cmd_queue) {}
+  explicit Session(tcp::socket &&socket, cmd::CommandQueue& cmd_queue)
+   : ws_(std::move(socket)), cmd_queue_(cmd_queue) {}
 
   // Start the asynchronous operation
   void run() {
@@ -344,7 +347,8 @@ Now we got all the building blocks for our application. So let's write `main()`.
 
 #include <csignal>
 
-void process_commands(cmd::CommandExecutor& executor, cmd::CommandQueue& cmd_queue){
+void process_commands(cmd::CommandExecutor& executor,
+                      cmd::CommandQueue& cmd_queue){
   cmd::Command command;
   while (cmd_queue.pop(command)) {
     std::visit(executor, command);
@@ -370,7 +374,8 @@ int main(){
   net::io_context io_context(1);
   
   // listen on all IPv4 interfaces on port 8888
-  std::make_shared<Listener>(io_context, tcp::endpoint{tcp::v4(), 8888}, cmd_queue)->run();
+  std::make_shared<Listener>(io_context, tcp::endpoint{tcp::v4(), 8888},
+    cmd_queue)->run();
   std::thread io_task([&io_context](){ io_context.run(); });
 	
   // our main loop

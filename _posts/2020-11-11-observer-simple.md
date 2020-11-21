@@ -35,7 +35,8 @@ void attach(std::function<void(int)> callback) {
 }
 
 void measure() {
-  // some complex measurment logic which is waiting for hardware state changes...
+  // some complex measurment logic which is waiting for hardware
+  // state changes...
   const int new_sensor_state = 42;
   notify(new_sensor_state);
 }
@@ -79,7 +80,8 @@ pass this handle to the `detach` method.
 Change the `Sensor::attach` method to return a handle to the inserted callback:
 ```cpp
 
-std::list<std::function<void(int)>>::iterator attach(std::function<void(int)> callback) {
+std::list<std::function<void(int)>>::iterator
+attach(std::function<void(int)> callback) {
   callbacks_.emplace_back(callback);
   return --callbacks_.end();
 }
@@ -89,9 +91,8 @@ std::list<std::function<void(int)>>::iterator attach(std::function<void(int)> ca
 And add a `Sensor::detach` method:
 ```cpp
 
-std::list<std::function<void(int)>>::iterator attach(std::function<void(int)> callback) {
-  callbacks_.emplace_back(callback);
-  return --callbacks_.end();
+void detach(std::list<std::function<void(int)>>::iterator handle){
+  callbacks_.erase(handle);
 }
 
 ```

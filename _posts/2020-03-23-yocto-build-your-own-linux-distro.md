@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Yocto: Build your own linux distribution
+title: "Yocto: Build your own linux distribution"
 thumbnail: assets/images/yocto-logo-bg-dark.svg
 categories: [embedded, linux, yocto]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to organize your C/C++ project"
+title:  "Back to basics: How to organize your C/C++ project"
 thumbnail: assets/images/cpp-logo.svg
 date: 2020-03-30
 categories: cpp

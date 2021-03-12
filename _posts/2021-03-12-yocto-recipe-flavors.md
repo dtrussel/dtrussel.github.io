@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Yocto: Recipe flavors
+title: "Yocto: Recipe flavors"
 thumbnail: assets/images/yocto-logo-bg-dark.svg
 categories: [embedded, linux, yocto]
 ---

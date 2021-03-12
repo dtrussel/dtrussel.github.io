@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Recipe flavors
+title: Yocto: Recipe flavors
 thumbnail: assets/images/yocto-logo-bg-dark.svg
 categories: [embedded, linux, yocto]
 ---
@@ -15,9 +15,9 @@ and how to add them to your recipes.
 
 # The holy trinity
 
-1. foo
-1. foo-native
-1. nativesdk-foo
+1. **foo**
+1. **foo-native**
+1. **nativesdk-foo**
 
 The most common case is just building you recipe `foo`. This builds the recipe for your target architecture e.g. `aarch64`.
 

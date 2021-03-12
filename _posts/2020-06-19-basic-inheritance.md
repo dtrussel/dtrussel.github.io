@@ -20,7 +20,7 @@ e.g. a `Dog` is an `Animal`. However that does not completely work in some cases
 is better to follow the [Liskov Substitution Principle](https://stackoverflow.com/a/584732).
 This principle basically states, that if you chose inheritance, then the `Derived` class should
 be able to be used anywhere, where the `Base` class is used i.e. you could substitute
-all your `Base`s with `Derived`s.
+all your `Derived`s with `Base`s.
 
 To give a simple example:
 At first it might seem like a good idea to make your `Penguin` class inherit from
@@ -172,10 +172,3 @@ polymorphism and consider other choices as well e.g. using `std::variant`.
 ## References 
 * Hands-On Design Patterns with C++ by Fedor G. Pikus (ISBN 978-1-78883-256-4)
 * [Fluent C++](https://www.fluentcpp.com/2017/05/12/curiously-recurring-template-pattern/)
-
-
-
-
-
-
-

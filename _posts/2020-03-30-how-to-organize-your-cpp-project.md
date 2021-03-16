@@ -16,8 +16,8 @@ The answer you usually get when asking how to structure your project is that you
 should look at a well established project / library and stick to something 
 similar. However when looking at projects like [Boost](https://github.com/boostorg/),
 [Abseil](https://github.com/abseil/abseil-cpp), [JSON for Modern C++](https://github.com/nlohmann/json)
-But what are the essentials? Some of these projects are huge and need some time to
-get into as a beginner. Or some libraries were header-only, but I wanted to build
+it might be difficult to figure out the essentials. Some of these projects are huge and need some time to
+get familiar with as a beginner. Or some libraries were header-only, but I wanted to build
 a shared library. I had to work on a couple of projects till I got the hang of
 it.
 

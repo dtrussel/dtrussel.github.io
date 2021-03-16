@@ -4,10 +4,10 @@ title:  "C++ Design Patterns: Template Method - no templates involved"
 thumbnail: assets/images/cpp-logo.svg
 categories: [cpp, design patterns]
 ---
-Assume you have something - let's call it an algorithm - that
-has an overall structure, but some parts of it need to be customized depending
-on the use case. The idea of the Template Method pattern is to define the overall
-structure in a base class and let the derived classes override the specific behavior.
+Assume you have something that has an overall structure, but some parts of it need to
+be customized depending on the use case. The idea of the Template Method pattern is
+to define the overall structure in a base class and let the derived classes override
+the specific behavior.
 
 Going back to the sensor example from my last post:
 ```cpp

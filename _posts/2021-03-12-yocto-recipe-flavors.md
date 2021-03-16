@@ -26,19 +26,33 @@ Why would you need that? Let's say you want to build a recipe that, as part of i
 Now your recipe needs to add `DEPENDS += "python-native"` because you want to run this code generation as part of the build process on your host and not on the target machine. Adding a `DEPENDS += "python"` would not make sense, since that would be the cross compiled version of python, which cannot run on your build host.
 
 What about `nativesdk-foo`?
-Now there is another use case. Assume you want to build the same project mentioned above, but this time not within your Yocto project, but with the SDK which distributed to the application developers. So the SDK should include python as well, but again not the cross-compiled version but a version that can run on the host where the SDK is installed. In 99% that is probably the same architecture as the build host (e.g. `x86_64`) but theoretically the two could be different.
+Assume you want to build the same project mentioned above, but this time not within your Yocto project, but with the SDK. So the SDK should include python as well, but again not the cross-compiled version but a version that can run on the host where the SDK is installed. In 99% that is probably the same architecture as the build host (e.g. `x86_64`) but theoretically the two could be different.
 Hence we need to add `nativesdk-python` to our SDK.
 
 # Add native and nativesdk support to your recipes
-Let's consider the most simple case: Your recipe is build the same way for all architectures.
+Let's start simple: Your recipe is build the same way for all flavors.
 Then it is enough to just add
 ```
 BBCLASSEXTEND = "native nativesdk"
 ```
 to your recipe.
 
-And if the package is built differently for each architecture then you need to write the additional recipes yourself i.e.
-add a `foo-native.bb` and a `nativesdk-foo.bb` to your layer.
+And if the package is built differently for `native` and `nativesdk` you can either
+add a `foo-native.bb` and a `nativesdk-foo.bb` to your layer or you can customize single tasks
+of your `foo.bb` recipe e.g.:
+```
+python do_install_class-target () {
+  bb.plain("Install for target");
+}
+
+python do_install_class-native () {
+  bb.plain("Install for native");
+}
+
+python do_install_class-nativesdk () {
+  bb.plain("Install for nativesdk");
+}
+```
 
 ## References:
 * [Yocto Reference Manual](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html)

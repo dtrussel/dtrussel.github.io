@@ -4,7 +4,7 @@ title:  "C++ Design Patterns: A Modern Command Pattern"
 thumbnail: assets/images/cpp-logo.svg
 categories: [cpp, design patterns]
 ---
-Don't worry. This is not yet another take at the classic Gang of Four
+Don't worry. This is not yet another take on the classic Gang of Four
 [Command Pattern](https://en.wikipedia.org/wiki/Command_pattern#C++).
 Instead we look at how we can use modern C++ features to solve
 the same problem in a different way. Namely we want to send commands to a (possibly)

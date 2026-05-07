@@ -31,9 +31,9 @@ private:
 ```
 
 This is great because the interface `measure()` is separated from the implementation `do_measure()`.
-If we would simply make the `measure()` method virtual and override it in the base class, the
+If we simply made the `measure()` method virtual and overrode it in the derived classes, the
 implementation and interface would be coupled and it would make it harder to maintain such classes.
-If we want later to add some functionality it will be much easier with the template method / a non-virtual
+If we want to add some functionality later it will be much easier with the template method / a non-virtual
 interface. E.g. we want to filter each sensor value.
 Then we can just modify the base class like this:
 ```cpp
@@ -49,14 +49,14 @@ private:
 };
 ```
 The interface `measure()` stays exactly the same and none of the client code has to be modified.
-This would not have been possible, had we worked with a overloading a virtual interface.
+This would not have been possible, had we worked by overriding a virtual interface.
 
 So make your interface non-virtual and public in the base class and separate the implementation into private/protected
 virtual functions which the derived classes can override.
 
 ## References 
 * Hands-On Design Patterns with C++ by Fedor G. Pikus (ISBN 978-1-78883-256-4)
-* [Virtuality - Herb Sutter](http://www.gotw.ca/publications/mill18.htm)
+* [Virtuality - Herb Sutter](https://www.gotw.ca/publications/mill18.htm)
 
 
 

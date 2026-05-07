@@ -23,7 +23,7 @@ can be used to address two categories of design problems.
 The first one is to represent physical objects or resources that are unique in 
 the context of the program. E.g. imagine you are designing software that will
 run on a single car. So a `Car` object might be a singleton, since the software
-will never have to deal with fleet of cars (of course you could also envision a
+will never have to deal with a fleet of cars (of course you could also envision a
 software that controls several cars, where you would not make `Car` a singleton).   
 The second category is objects that are global by design (without representing
 any physical object). E.g. you might decide to implement a resource manager
@@ -37,7 +37,7 @@ So in short. Do not think if you should use a singleton or not, but instead thin
 your design should enforce that a certain object is global and unique.
 
 So if after some consideration you still decided to go ahead with a singleton,
-let's have a look on how to implement one.
+let's have a look at how to implement one.
 
 For the sake of simplicity we will consider the associated data of the singleton
 to be an `int`.
@@ -104,17 +104,17 @@ int value = Singleton::get();
 And thus hopefully a bit more readable and clear.
 
 Now all is fine and well. Everything is static and the singleton is initialized
-before the program i.e. `main()` starts executing and is destroyed after it ends. But
+before the program (i.e. `main()`) starts executing and is destroyed after it ends. But
 what if code in another static object uses our singleton? The order of 
 initialization of static objects is generally undefined (implementation dependent).
 The standard only guarantees that all static objects defined in the same file
-will be initalized in order of their declaration. But as soon as they are spread
+will be initialized in order of their declaration. But as soon as they are spread
 out over several files, we do have a problem. E.g. imagine a singleton logger
-that makes use of singleton memory manager.
-How can we make sure the memory manager is initalized when we use it in the logger
+that makes use of a singleton memory manager.
+How can we make sure the memory manager is initialized when we use it in the logger
 in the static part of our code?
 
-## The Meyers` Singleton
+## The Meyers' Singleton
 Named after [Scott Meyers](https://en.wikipedia.org/wiki/Scott_Meyers), this 
 implementation of a singleton defers its initialization to its first use. Thus
 solving the above mentioned problem of undefined static object initialization
@@ -138,7 +138,7 @@ private:
 The private constructor prevents the program from directly constructing the object.
 Instead the initialization will take place only on the first call of the static
 `instance()` member function. Since this is the only way to access the singleton,
-it is guaranteed to be initialzed on the first usage.
+it is guaranteed to be initialized on the first usage.
 
 The usage would look like this:
 ```cpp
@@ -166,7 +166,7 @@ for (auto i = 0; i < N; ++i) {
 ```
 
 ## The Pimpl Singleton
-Sometimes it is desired to have a clear seperation between interface and
+Sometimes it is desired to have a clear separation between interface and
 implementation. The pointer to implementation (pimpl) idiom exposes only the
 interface in the header file, and the implementation is hidden inside a class
 inside the .cpp file. The actual singleton class then only holds a pointer to 
@@ -207,15 +207,15 @@ avoid the performance overhead mentioned in the previous section.
 (There is also a small overhead of an indirection).
 
 ## How about thread safety?
-Until now we ignored the thread safety of the singletons. But while the here presented
-singleton instances are thread safe, because they are static, the associated data
+Until now we ignored the thread safety of the singletons. But while the singleton
+instances presented here are thread safe, because they are static, the associated data
 members are no different than any other shared variable. When used in a multi-threaded
 context the programmer is responsible to use it in a thread safe manner, e.g.
 protecting them by a mutex.
 
 For a more in-depth view into the subject I highly recommend the book referenced
 below. I hope now you know how to implement your singleton, but remember to think
-twice before deciding to chose a global variable in disguise.
+twice before deciding to choose a global variable in disguise.
 
 ## References 
 * Hands-On Design Patterns with C++ by Fedor G. Pikus (ISBN 978-1-78883-256-4)

@@ -22,9 +22,9 @@ provider for the embedded device we were developing. We wanted to have full cont
 over what software will run on the device and we did not want to deal with external
 distribution support or updates.
 
-While the projects documentation is excellent, the learning curve is quite steep.
-In the begining it can be hard to find a good starting point. So instead of
-wasting any time, let us just jump into creating an own distribution. All you need
+While the project's documentation is excellent, the learning curve is quite steep.
+In the beginning it can be hard to find a good starting point. So instead of
+wasting any time, let us just jump into creating our own distribution. All you need
 is a Debian/Ubuntu host with at least 50 GBytes free disk space.
 
 But be warned. Yocto builds can take a long time when run for the first time.
@@ -45,9 +45,9 @@ bitbake-layers create-layer ../meta-foundation --priority 10
 bitbake-layers add-layer ../meta-foundation
 cd ..
 ```
-As first step we installed the dependencies, created a project directory and cloned
+As a first step we installed the dependencies, created a project directory and cloned
 the poky (Yocto's example linux distribution) into it. We then sourced the yocto
-build environment (which also creates also a build directory with the provided name if it does not exist yet) and created our own layer with the `bitbake-layers` command. 
+build environment (which also creates a build directory with the provided name if it does not exist yet) and created our own layer with the `bitbake-layers` command.
 
 # The project's structure
 
@@ -84,7 +84,7 @@ yocto
     └── scripts
 
 ```
-We have the poky layer which provides us with the build system `bitbake`, a script `oe-init-build-env`to initialze the build environmet and the core layers (all subdirectories starting with `meta`). On the same level we have our newly created meta-foundation layer and the build directory, where all bitbake keeps all the build output and cache as well as some local
+We have the poky layer which provides us with the build system `bitbake`, a script `oe-init-build-env` to initialize the build environment and the core layers (all subdirectories starting with `meta`). On the same level we have our newly created meta-foundation layer and the build directory, where bitbake keeps all the build output and cache as well as some local
 build configuration (e.g. how many threads to use for bitbake and make etc.).
 
 Now let's have a closer look at the structure of our created layer `meta-foundation`:
@@ -132,10 +132,10 @@ python do_build() {
 }
 
 ```
-This only prints something during building. Let us changes this to do
+This only prints something during building. Let us change this to do
 something more meaningful. Often you want to include some library / application
-to your OS. Since `CMake` is quite popular and I often use it for my projects, we
-will add a recipe that builds a cmake project. 
+to your OS. Since CMake is quite popular and I often use it for my projects, we
+will add a recipe that builds a CMake project.
 
 # Add an own recipe
 
@@ -148,7 +148,7 @@ mv recipes-support/example recipes-support/dtr
 mv recipes-support/dtr/example_0.1.bb recipes-support/dtr/dtr_git.bb
 ```
 
-Overwrite our example recipe with one that builds a Cmake based library:
+Overwrite our example recipe with one that builds a CMake-based library:
 ```
 cat > recipes-support/dtr/dtr_git.bb <<'__EOF__'
 SUMMARY = "dtr - C++ utility library"
@@ -201,7 +201,7 @@ __EOF__
 
 A distro can have several images (e.g. base, server, development, production),
 which contain more or less packages.
-So let's add a image that is based on the `core-image-base` and add our recipe
+So let's add an image that is based on the `core-image-base` and add our recipe
 to it.
 ```
 mkdir -p recipes-core/images/
@@ -211,8 +211,8 @@ include recipes-core/images/core-image-base.bb
 IMAGE_INSTALL_append = " dtr-dev"
 __EOF__
 ```
-Sidenote: The package we add is `dtr-dev`, and not `dtr` because it is a header-only library
-and the main package of the cmake based recipe is just the test executable in this
+Sidenote: The package we add is `dtr-dev`, and not `dtr`, because it is a header-only library
+and the main package of the CMake-based recipe is just the test executable in this
 case.
 
 So now we are ready and can finally **bake it**:
@@ -220,7 +220,7 @@ So now we are ready and can finally **bake it**:
 DISTRO=foundation bitbake foundation-image-base
 ```
 
-Great we are building our own linux distribution! Go grab a coffee while the initial
+Great, we are building our own linux distribution! Go grab a coffee — the initial
 build will take a long time, since it builds everything from source. But don't worry, subsequent
 builds will be incremental.
 
@@ -229,9 +229,9 @@ builds will be incremental.
 - Never modify another layer (if you want to modify an existing recipe, use a `recipes-something/somelibrary_<VERSION>.bbappend` file in your layer instead)
 
 ## References:
-* [Yocto Project Overview](https://www.yoctoproject.org/docs/latest/overview-manual/overview-manual.html)
-* [Yocto Reference Manual](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html)
-* [Bitbacke User Manual](https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html)
+* [Yocto Project Overview](https://docs.yoctoproject.org/overview-manual/index.html)
+* [Yocto Reference Manual](https://docs.yoctoproject.org/ref-manual/index.html)
+* [BitBake User Manual](https://docs.yoctoproject.org/bitbake/index.html)
 
 
 

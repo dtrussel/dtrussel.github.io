@@ -29,7 +29,7 @@ the `Bird` class has a `fly()` method in its interface. So following Liskov,
 we should not use this inheritance, because we could not use `Penguin` everywhere
 we used `Bird`.
  
-![Liskov Meme](http://web.archive.org/web/20160505182607/https://lostechies.com/derickbailey/files/2011/03/LiskovSubtitutionPrinciple_52BB5162.jpg){: .center-image }
+![Liskov Meme](https://web.archive.org/web/20160505182607/https://lostechies.com/derickbailey/files/2011/03/LiskovSubtitutionPrinciple_52BB5162.jpg){: .center-image }
 
 When is it then a good idea to use inheritance? Often it is to used together
 with virtual functions for runtime polymorphism. 

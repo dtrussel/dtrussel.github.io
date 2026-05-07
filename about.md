@@ -9,8 +9,8 @@ permalink: /about/
 This is my personal blog, where I try to share some practical knowledge about
 software engineering.
 
-I am an software engineer with experiece in robotics and medical devices. My 
-work has been mostly with C, C++, Python and Linux. I am highly interessted in
+I am a software engineer with experience in robotics and medical devices. My
+work has been mostly with C, C++, Python and Linux. I am highly interested in
 Machine Learning, Optimization and Computer Vision.
 
 

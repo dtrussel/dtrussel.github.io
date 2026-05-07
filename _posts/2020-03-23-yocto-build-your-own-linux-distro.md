@@ -229,9 +229,9 @@ builds will be incremental.
 - Never modify another layer (if you want to modify an existing recipe, use a `recipes-something/somelibrary_<VERSION>.bbappend` file in your layer instead)
 
 ## References:
-* [Yocto Project Overview](https://www.yoctoproject.org/docs/latest/overview-manual/overview-manual.html)
-* [Yocto Reference Manual](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html)
-* [BitBake User Manual](https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html)
+* [Yocto Project Overview](https://docs.yoctoproject.org/overview-manual/index.html)
+* [Yocto Reference Manual](https://docs.yoctoproject.org/ref-manual/index.html)
+* [BitBake User Manual](https://docs.yoctoproject.org/bitbake/index.html)
 
 
 

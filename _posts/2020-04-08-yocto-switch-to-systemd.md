@@ -4,7 +4,7 @@ title:  "Yocto: Switch to systemd"
 thumbnail: assets/images/systemd-dark.svg
 categories: [embedded, linux, yocto, systemd]
 ---
-Yocto's reference distribution [poky](https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-poky/README.poky) comes
+Yocto's reference distribution [poky](https://git.yoctoproject.org/poky/tree/meta-poky/README.poky) comes
 with [SysVinit](https://en.wikipedia.org/wiki/Init#SysV-style) as an initialization manager.
 However many major linux distributions use [systemd](https://systemd.io/)
 as a system and service manager. In this post we will look at how to easily switch
@@ -39,5 +39,5 @@ we completely removed all SysVinit dependencies in our image. If you do not spec
 these you can still use SysVinit for your rescue/minimal image.
 
 `DISTRO_FEATURES_BACKFILL_CONSIDERED` lists features which should not be used for
-[feature backfilling](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#ref-features-backfill).
+[feature backfilling](https://docs.yoctoproject.org/ref-manual/features.html#ref-features-backfill).
 

@@ -55,4 +55,4 @@ python do_install_class-nativesdk () {
 ```
 
 ## References:
-* [Yocto Reference Manual](https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html)
+* [Yocto Reference Manual](https://docs.yoctoproject.org/ref-manual/index.html)

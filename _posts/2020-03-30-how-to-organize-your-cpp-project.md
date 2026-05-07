@@ -10,7 +10,7 @@ to organize my projects. Most text books or lectures were more focused on teachi
  either programming principles or language features. So in this post I would like
 to share what is in my opinion the best project structure. 
 
-![Yocto](/assets/images/cpp-logo.svg){: .center-image }
+![C++ logo](/assets/images/cpp-logo.svg){: .center-image }
 
 The answer you usually get when asking how to structure your project is that you
 should look at a well established project / library and stick to something 
@@ -48,7 +48,7 @@ parts in the `include` directory (when you are building only an application you
 basically do not need this directory). Then in the `src` folder you place your
 private headers and the compilation units (aka. `.cpp` files) for your project.
 
-I also usually keep the unit and integration tests of the libray in a separate
+I also usually keep the unit and integration tests of the library in a separate
 `test` folder.
 
 I consider it a good practice to mirror the namespaces of my libraries as

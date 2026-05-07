@@ -7,12 +7,12 @@ categories: [cpp, design patterns]
 Another classic Gang of Four Pattern is the 
 [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern). In this
 pattern, *observers* want to be notified about state changes of a *subject*.
-In this post we will look how to easily implement this with `std::function`.
+In this post we will look at how to easily implement this with `std::function`.
 
 As before I will stick to a sensor example. Let's assume we have a sensor
 that changes its state in unpredictable intervals and different parts of
-your system need to know about these changes. Of course you could pull
-the sensor state form each part. However this is not very elegant and might
+your system need to know about these changes. Of course you could poll
+the sensor state from each part. However this is not very elegant and might
 lead to several unneeded busy loops.
 In the classic pattern the *subject* would keep a list of the *observers*
 but since C++11 we can register callbacks very easily with `std::function`.
@@ -35,7 +35,7 @@ void attach(std::function<void(int)> callback) {
 }
 
 void measure() {
-  // some complex measurment logic which is waiting for hardware
+  // some complex measurement logic which is waiting for hardware
   // state changes...
   const int new_sensor_state = 42;
   notify(new_sensor_state);
@@ -69,7 +69,7 @@ there is no observer class in this observer pattern.
 But you might have realized that there is one small catch. There is no `detach`
 method. Once we registered an observer with `attach` there is no way to deregister.
 That is due to the fact, that `std::function` is not comparable (or only against `nullptr`).
-In many cases this is fine and you want to observer a state during the whole runtime.
+In many cases this is fine and you want to observe a state during the whole runtime.
 However if you need to be able to unregister there is an easy fix for this.
 
 # Observers with handles
@@ -116,7 +116,7 @@ there is no easy workaround for this. If keeping track of handles is not
 acceptable you might at this point be better off not reinventing the wheel
 and use an existing library e.g.
 [boost::signals2](https://www.boost.org/doc/libs/1_74_0/doc/html/signals2.html#id-1.3.36.3.5)
-or [Qt signals](https://doc.qt.io/qt-5/signalsandslots.html)
+or [Qt signals](https://doc.qt.io/qt-5/signalsandslots.html).
 
 ## References 
 * [Generalizing Observer - Herb Sutter](https://www.drdobbs.com/cpp/generalizing-observer/184403873)

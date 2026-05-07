@@ -5,7 +5,7 @@ thumbnail: assets/images/yocto-logo-bg-dark.svg
 categories: [embedded, linux, yocto]
 ---
 
-If you have done some Yocto development you might already have encounter them in the wild...
+If you have done some Yocto development you might already have encountered them in the wild...
 `native` and `nativesdk` recipes...
 Recipes cannot only be built for the target, but also for your build host or your SDK host.
 This post gives a short summary about what the different recipe "flavors" are used for
@@ -19,7 +19,7 @@ and how to add them to your recipes.
 1. **foo-native**
 1. **nativesdk-foo**
 
-The most common case is just building you recipe `foo`. This builds the recipe for your target architecture e.g. `aarch64`.
+The most common case is just building your recipe `foo`. This builds the recipe for your target architecture e.g. `aarch64`.
 
 But you also might need to build your recipe in the native flavor i.e. `foo-native`. This builds the recipe such that it can be used on the build host e.g. `x86_64`.
 Why would you need that? Let's say you want to build a recipe that, as part of its build, needs to generate some code. This code is generated with python.
@@ -30,7 +30,7 @@ Assume you want to build the same project mentioned above, but this time not wit
 Hence we need to add `nativesdk-python` to our SDK.
 
 # Add native and nativesdk support to your recipes
-Let's start simple: Your recipe is build the same way for all flavors.
+Let's start simple: Your recipe is built the same way for all flavors.
 Then it is enough to just add
 ```
 BBCLASSEXTEND = "native nativesdk"

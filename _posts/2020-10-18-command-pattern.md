@@ -103,9 +103,9 @@ To give a more complete example we will also look at the communication and seria
 
 # Deserialize it!
 
-On the communication interface (which we will define bellow) we will receive the commands in a certain format / protocol and we need
+On the communication interface (which we will define below) we will receive the commands in a certain format / protocol and we need
 to parse these messages into our command representation above. For this example I will use JSON. JSON is in my opinion a very
-good starting point for machine to machine communication, because it is also human readable and hence easy to debug. Most of the time its performance is also good enough for sending small data like the here mentioned commands.
+good starting point for machine to machine communication, because it is also human readable and hence easy to debug. Most of the time its performance is also good enough for sending small data like the commands mentioned here.
 
 I decided to use [nlohmann/json](https://github.com/nlohmann/json) for this example:
 
@@ -163,8 +163,8 @@ Like for the serialization part above, there exist many possibilities how to per
 Here we will be using [boost's websocket](https://www.boost.org/doc/libs/1_70_0/libs/beast/doc/html/beast/using_websocket.html) implementation, which is maybe a bit verbose, but available for almost any decent OS.
 
 At some point we will also need some thread safe mechanism to pass the commands from the communication thread to our main thread.
-For simplicity's sake I will just use a `boost::lockfree::queue`, since anyway we are using boost. A thread safe queue is a great way to deal with communication between threads, because from the point of the main thread there will only be a single source of commands. This makes it easier to test,
-e.g. for unit test you can ignore the communication and just fill the command queue another way.
+For simplicity's sake I will just use a `boost::lockfree::queue`, since we are already using boost. A thread safe queue is a great way to deal with communication between threads, because from the point of view of the main thread there will only be a single source of commands. This makes it easier to test;
+e.g. for unit tests you can ignore the communication and just fill the command queue another way.
 
 ```cpp
 #include <boost/lockfree/queue.hpp>
@@ -177,7 +177,7 @@ using CommandQueue = boost::lockfree::queue<cmd::Command>;
 } // namespace cmd
 ```
 
-Our light bulb application will be a websocket server, where clients can connect to. So we define a listener class, which listens for new connections and starts a new session for each (we will define later what a session does).
+Our light bulb application will be a websocket server to which clients can connect. So we define a listener class, which listens for new connections and starts a new session for each (we will define later what a session does).
 ```cpp
 
 #include "commands.hpp"
@@ -407,4 +407,4 @@ And that's it. From the websocket client we can then send our commands as json s
 Some take away points:
 * `std::variant` and `std::visit` are great alternatives to an inheritance based command design.
 * Separating the communication from the hardware control makes it easy to maintain e.g. replacing the communication interface or protocol.
-* Having a single source of commands (here our command queue) makes it very suitable for testing
+* Having a single source of commands (here our command queue) makes it very suitable for testing.
